@@ -5,6 +5,7 @@ import 'sources/form_a.dart';
 import 'sources/form_b.dart';
 import 'sources/form_c.dart';
 import 'sources/form_d.dart';
+import 'sources/form_extra.dart';
 
 
 void main() => runApp(const MyApp());
@@ -168,64 +169,64 @@ class _HomePage extends StatelessWidget {
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(8),
         child: ListView(
           children: <Widget>[
             Row(
               children: <Widget>[
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(3),
                     child: ElevatedButton(
                       onPressed: () {_simpleDialog(context);},
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(5.0),
                         alignment: AlignmentDirectional.center,
                         backgroundColor: Theme.of(context).primaryColor,
                       ),
-                      child: const Text('Simple Dialog', style: TextStyle(color: Colors.white),),
+                      child: const Text('Simple Dialog', style: TextStyle(fontSize: 12, color: Colors.white),),
                     ),
                   )
                 ),
                 Expanded(
                   child: Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(3),
                     child: ElevatedButton(
                       onPressed: () {_alertDialog(context);},
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(5.0),
                         alignment: AlignmentDirectional.center,
                         backgroundColor: Theme.of(context).primaryColor,
                       ),
-                      child: const Text('Alert Dialog',style: TextStyle(color: Colors.white),),
+                      child: const Text('Alert Dialog',style: TextStyle(fontSize: 12, color: Colors.white),),
                     ),
                   )
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(3),
                     child: ElevatedButton(
                       onPressed: () {_snackBar(context);},
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(5.0),
                         alignment: AlignmentDirectional.center,
                         backgroundColor: Theme.of(context).primaryColor,
                       ),
-                      child: const Text('Snack Bar',style: TextStyle(color: Colors.white),),
+                      child: const Text('Snack Bar',style: TextStyle(fontSize: 12, color: Colors.white),),
                     ),
                   )
                 ),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(3),
                     child: ElevatedButton(
                       onPressed: () {_modalButtonSheet(context);},
                       style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(5.0),
                         alignment: AlignmentDirectional.center,
                         backgroundColor: Theme.of(context).primaryColor,
                       ),
-                      child: const Text('Modal Sheet',style: TextStyle(color: Colors.white),),
+                      child: const Text('Modal Sheet',style: TextStyle(fontSize: 12, color: Colors.white),),
                     ),
                   )
                 ),
@@ -282,6 +283,20 @@ class _HomePage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) {
                       return FormD();
+                    },
+                  ),
+                );
+              },
+            ),
+            const Divider(),
+            ListTile(
+              title: const Text('Form Extra: Music'),
+              trailing: const Icon(Icons.music_note),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FormExtra();
                     },
                   ),
                 );
