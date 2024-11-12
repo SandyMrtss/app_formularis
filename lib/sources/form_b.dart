@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormB extends StatefulWidget {
@@ -47,12 +46,12 @@ class _CompleteFormState extends State<FormB> {
               labelStyle: TextStyle(color: Colors.lightBlueAccent),
               alignLabelWithHint: true,
               enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  borderSide: BorderSide(color: Colors.lightBlueAccent)
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+                borderSide: BorderSide(color: Colors.lightBlueAccent)
               ),
               focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  borderSide: BorderSide(width: 2 ,color: Colors.indigo)
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+                borderSide: BorderSide(width: 2 ,color: Colors.indigo)
               ),
             ),
           ),
@@ -65,12 +64,12 @@ class _CompleteFormState extends State<FormB> {
               labelText: 'Mobile No',
               labelStyle: TextStyle(color: Colors.lightBlueAccent,),
               enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  borderSide: BorderSide(color: Colors.lightBlueAccent)
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+                borderSide: BorderSide(color: Colors.lightBlueAccent)
               ),
               focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  borderSide: BorderSide(width: 2 ,color: Colors.indigo)
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+                borderSide: BorderSide(width: 2 ,color: Colors.indigo)
               ),
             ),
           ),
@@ -90,8 +89,7 @@ class _CompleteFormState extends State<FormB> {
               'Personal',
               style: TextStyle(fontSize: 40),
             ),
-            Text('Your personal information is important. '
-                'Click continue or Contact to go to the next step'),
+            Text('Your personal information is important.\nClick continue or "Contact" to go to the next step'),
           ],
         ),
         isActive: _currentStep == 0,
@@ -105,7 +103,7 @@ class _CompleteFormState extends State<FormB> {
               'Contact',
               style: TextStyle(fontSize: 40),
             ),
-            Text('Pulsi "Upload" o pulsi el botó de "Continue".'),
+            Text('Contact information should go here.\nClick continue or "Upload" to go to the next step'),
           ],
         ),
         isActive: _currentStep == 1,
@@ -126,34 +124,37 @@ class _CompleteFormState extends State<FormB> {
       });
       return;
     }
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Row(
-                children: <Widget>[
-                  const Icon(Icons.check_circle_rounded,color: Colors.green,),
-                  SizedBox(width: 7,),
-                  const Text(
-                    'Submission Completed!',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
-                  )
-                ],
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Row(
+            children: <Widget>[
+              const Icon(Icons.check_circle_rounded,color: Colors.green,),
+              SizedBox(width: 7,),
+              const Text(
+                'Submission Completed!',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
+              )
+            ],
+          ),
+          content: Text(
+            _formKey.currentState!.value.toString(),
+            textAlign: TextAlign.left,
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pop(),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(145, 255, 245, 100),
               ),
-              content: Text(
-                _formKey.currentState!.value.toString(),
-                textAlign: TextAlign.left,
-              ),
-              actions: [
-                ElevatedButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(145, 255, 245, 100),
-                    ),
-                    child: const Text('Close', style: TextStyle(color: Colors.black),))
-              ],
-            );
-          });
+              child: const Text('Close', style: TextStyle(color: Colors.black),)
+            )
+          ],
+
+        );
+      }
+    );
   }
 
   void _cancel() {
@@ -177,58 +178,58 @@ class _CompleteFormState extends State<FormB> {
     if(_currentStep < step){
       return StepState.indexed;
     }
-      return StepState.editing;
+    return StepState.editing;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Sandra Martos 24/25 Forms App'),
-          backgroundColor: Colors.lightBlueAccent,
-          elevation: 0,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
-              Expanded(
-                child: Stepper(
-                  type: StepperType.horizontal,
-                  currentStep: _currentStep,
-                  steps: _steps(),
-                  onStepContinue: _continue,
-                  onStepCancel: _cancel,
-                  onStepTapped: _tap,
-                  controlsBuilder: (BuildContext context, ControlsDetails details) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        const SizedBox(height: 100,),
-                        Expanded(
-                            child: ElevatedButton(
-                              onPressed: details.onStepContinue,
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Theme.of(context).primaryColor,
-                              ),
-                              child: const Text('CONTINUE', style: TextStyle(color: Colors.white),),
-                            ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: TextButton(
-                            onPressed: details.onStepCancel,
-                            child: const Text('CANCEL'),
+      appBar: AppBar(
+        title: Text('Sandra Martos 24/25 Forms App'),
+        backgroundColor: Colors.lightBlueAccent,
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Expanded(
+              child: Stepper(
+                type: StepperType.horizontal,
+                currentStep: _currentStep,
+                steps: _steps(),
+                onStepContinue: _continue,
+                onStepCancel: _cancel,
+                onStepTapped: _tap,
+                controlsBuilder: (BuildContext context, ControlsDetails details) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      const SizedBox(height: 100,),
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: details.onStepContinue,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Theme.of(context).primaryColor,
                           ),
+                          child: const Text('CONTINUE', style: TextStyle(color: Colors.white),),
                         ),
-                      ],
-                    );
-                  },
-                ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: TextButton(
+                          onPressed: details.onStepCancel,
+                          child: const Text('CANCEL'),
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
-            ]
-          ),
+            ),
+          ]
         ),
+      ),
     );
   }
 }

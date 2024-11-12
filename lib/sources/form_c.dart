@@ -20,19 +20,19 @@ class _CompleteFormState extends State<FormC> {
     @override
     Widget build(BuildContext context) {
       return Scaffold(
-          appBar: AppBar(
-            title: Text('Sandra Martos 24/25 Forms App'),
-            backgroundColor: Colors.lightBlueAccent,
-            elevation: 0,
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(20),
-            child: SingleChildScrollView(
-              child: Column(
-                  children: <Widget>[
-                  Text(
-                    "Sport Preferences",
-                    style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,),
+        appBar: AppBar(
+          title: Text('Sandra Martos 24/25 Forms App'),
+          backgroundColor: Colors.lightBlueAccent,
+          elevation: 0,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+              Text(
+                'Sport Preferences',
+                style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold,),
                   ),
                   SizedBox(height: 10,),
                   FormBuilder(
@@ -43,29 +43,29 @@ class _CompleteFormState extends State<FormC> {
                     child: Column(
                       children: <Widget>[
                         FormBuilderChoiceChip(
-                            name: 'favourite_sport',
-                            spacing: 5,
-                            runSpacing: 10,
-                            alignment: WrapAlignment.spaceEvenly,
+                          name: 'favourite_sport',
+                          spacing: 5,
+                          runSpacing: 10,
+                          alignment: WrapAlignment.spaceEvenly,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: InputDecoration(
-                              labelText: 'Choose one',
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(),
-                                borderRadius: BorderRadius.all(Radius.circular(12))
+                            labelText: 'Choose one',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(),
+                              borderRadius: BorderRadius.all(Radius.circular(12))
                               )
                             ),
-                            backgroundColor:  Color.fromRGBO(124, 159, 255, 75),
-                            showCheckmark: false,
-                            selectedColor: Colors.lightBlueAccent,
-                            shape: RoundedRectangleBorder(
-                                side: BorderSide(color: Colors.transparent),
-                                borderRadius: BorderRadius.all(Radius.circular(300))
+                          backgroundColor:  Color.fromRGBO(124, 159, 255, 75),
+                          showCheckmark: false,
+                          selectedColor: Colors.lightBlueAccent,
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.transparent),
+                            borderRadius: BorderRadius.all(Radius.circular(300))
                             ),
                             options: [
                               FormBuilderChipOption(
-                                  value: 'Rugby',
-                                  avatar: Icon(Icons.sports_rugby),
+                                value: 'Rugby',
+                                avatar: Icon(Icons.sports_rugby),
                               ),
                               FormBuilderChipOption(
                                 value: 'Basketball',
@@ -88,16 +88,16 @@ class _CompleteFormState extends State<FormC> {
                         ),
                         SizedBox(height: 10,),
                         FormBuilderSwitch(
-                            name: 'currently_practicing',
-                            title: Text('Do you currently practice any sport?'),
-                            initialValue: false,
-                            decoration: InputDecoration(
-                                labelText: 'Currently',
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(),
-                                    borderRadius: BorderRadius.all(Radius.circular(12))
-                                )
-                            ),
+                          name: 'currently_practicing',
+                          title: Text('Do you currently practice any sport?'),
+                          initialValue: false,
+                          decoration: InputDecoration(
+                            labelText: 'Currently',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(),
+                              borderRadius: BorderRadius.all(Radius.circular(12))
+                            )
+                          ),
                         ),
                         SizedBox(height: 10,),
                         FormBuilderTextField(
@@ -105,17 +105,18 @@ class _CompleteFormState extends State<FormC> {
                           maxLength: 15,
                           maxLengthEnforcement: MaxLengthEnforcement.none,
                           decoration: const InputDecoration(
-                              labelText: 'Who is your favourite athlete?',
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide(width: 1),
-                                borderRadius: BorderRadius.all(Radius.circular(12)),
-                              ),
+                            labelText: 'Who is your favourite athlete?',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(width: 1),
+                              borderRadius: BorderRadius.all(Radius.circular(12)),
+                            ),
                           ),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.minLength(1),
                             FormBuilderValidators.maxLength(15),
-                          ]),),
+                          ]),
+                        ),
                         SizedBox(height: 10,),
                         FormBuilderDropdown<String>(
                         name: 'modality',
@@ -147,11 +148,11 @@ class _CompleteFormState extends State<FormC> {
                           ),
                         ),
                         options: ['<30 min per week', '1h-2h per week', '2h-4h per week', '4-8h per week', '8-12h per week', '>12h per week']
-                            .map((age) => FormBuilderFieldOption(
-                          value: age,
-                          child: Text(age),
-                        ))
-                            .toList(growable: false),
+                          .map((time) => FormBuilderFieldOption(
+                            value: time,
+                            child: Text(time),
+                          ))
+                          .toList(growable: false),
                         orientation: OptionsOrientation.vertical,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: FormBuilderValidators.required(),
@@ -167,33 +168,33 @@ class _CompleteFormState extends State<FormC> {
           onPressed: () {
             if(_formKey.currentState?.saveAndValidate() ?? false){
               showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Row(
-                        children: <Widget> [
-                          const Icon(Icons.check_circle_rounded,color: Colors.green,),
-                          const SizedBox(width: 7,),
-                          const Text(
-                            'Submission Completed!',
-                            style: TextStyle(fontWeight: FontWeight.bold,),
-                          )
-                        ],
-                      ),
-                      content: Text(
-                        _formKey.currentState!.value.toString(),
-                        textAlign: TextAlign.left,
-                      ),
-                      actions: [
-                        ElevatedButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromRGBO(145, 255, 245, 100),
-                            ),
-                            child: const Text('Close', style: TextStyle(color: Colors.black),))
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Row(
+                      children: <Widget> [
+                        const Icon(Icons.check_circle_rounded,color: Colors.green,),
+                        const SizedBox(width: 7,),
+                        const Text(
+                          'Submission Completed!',
+                          style: TextStyle(fontWeight: FontWeight.bold,),
+                        )
                       ],
-                    );
-                  }
+                    ),
+                    content: Text(
+                      _formKey.currentState!.value.toString(),
+                      textAlign: TextAlign.left,
+                    ),
+                    actions: [
+                      ElevatedButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(145, 255, 245, 100),
+                        ),
+                        child: const Text('Close', style: TextStyle(color: Colors.black),))
+                    ],
+                  );
+                }
               );
               setState(() => autoValidateMode = AutovalidateMode.disabled);
               FocusManager.instance.primaryFocus?.unfocus();

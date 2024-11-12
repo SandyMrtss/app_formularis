@@ -203,6 +203,7 @@ class _CompleteFormState extends State<FormExtra> {
                                     debugPrint(_formKey.currentState?.value.toString());
                                     debugPrint('validation failed');
                                     setState(() => autoValidateMode = AutovalidateMode.onUserInteraction);
+                                    FocusManager.instance.primaryFocus?.unfocus();
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
