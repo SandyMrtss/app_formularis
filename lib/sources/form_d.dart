@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 
 class FormD extends StatefulWidget {
   const FormD({super.key});
@@ -30,7 +30,7 @@ class _CompleteFormState extends State<FormD> {
             elevation: 0,
           ),
           body: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(20),
             child: SingleChildScrollView(
               child: Column(
                   children: <Widget>[
@@ -46,24 +46,17 @@ class _CompleteFormState extends State<FormD> {
                     skipDisabled: true,
                     child: Column(
                       children: <Widget>[
-                        TypeAheadField(
+                        FormBuilderTypeAhead<String>(
+                          name: 'country',
+                          initialValue: null,
                           controller: autocompleteController,
-                          builder: (context, controller, focusNode) {
-                            return FormBuilderTextField(
-                              name: 'country',
-                              controller: controller,
-                              focusNode: focusNode,
-                              autovalidateMode: AutovalidateMode.onUnfocus,
-                              decoration: const InputDecoration(
-                                labelText: 'Which country are you visiting?',
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(width: 1),
-                                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                                ),
-                              ),
-                              validator: FormBuilderValidators.required(),
-                            );
-                          },
+                          decoration: const InputDecoration(
+                            labelText: 'Which country are you visiting?',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(width: 1),
+                              borderRadius: BorderRadius.all(Radius.circular(12)),
+                            ),
+                          ),
                           suggestionsCallback: (pattern) {
                             return _countryOptions.where((country) => country.toLowerCase().startsWith(pattern.toLowerCase())).toList();
                           },
@@ -75,6 +68,8 @@ class _CompleteFormState extends State<FormD> {
                           onSelected: (country) {
                             autocompleteController.text = country;
                           },
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: FormBuilderValidators.required(),
                         ),
                         SizedBox(height: 10,),
                         FormBuilderDateTimePicker(
@@ -130,15 +125,15 @@ class _CompleteFormState extends State<FormD> {
                             locale: Locale('en', 'GB'),
                             format: DateFormat('HH:mm'),
                             inputType: InputType.time,
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
                             validator: FormBuilderValidators.required()
                         ),
                         SizedBox(height: 10,),
                         FormBuilderFilterChip(
                             name: 'favourite_sport',
                             spacing: 5,
-                            runSpacing: 10,
-                            autovalidateMode: AutovalidateMode.onUserInteraction,
+                          runSpacing: 10,
+                          alignment: WrapAlignment.spaceEvenly,
+
                             decoration: InputDecoration(
                                 labelText: 'Choose all expenses that apply',
                                 border: OutlineInputBorder(
@@ -151,7 +146,7 @@ class _CompleteFormState extends State<FormD> {
                             showCheckmark: false,
                             shape: RoundedRectangleBorder(
                                 side: BorderSide(color: Colors.transparent),
-                                borderRadius: BorderRadius.circular(300)
+                                borderRadius: BorderRadius.circular(20)
                             ),
                             options: [
                               FormBuilderChipOption(
@@ -197,11 +192,10 @@ class _CompleteFormState extends State<FormD> {
                       title: Row(
                         children: <Widget> [
                           const Icon(Icons.check_circle_rounded,color: Colors.green,),
-                          SizedBox(width: 10,),
+                          const SizedBox(width: 7,),
                           const Text(
                             'Submission Completed!',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(fontWeight: FontWeight.bold,),
+                             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),
                           )
                         ],
                       ),
@@ -213,19 +207,15 @@ class _CompleteFormState extends State<FormD> {
                         ElevatedButton(
                             onPressed: () => Navigator.of(context).pop(),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.lightBlueAccent,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
+                              backgroundColor: Color.fromRGBO(145, 255, 245, 100),
                             ),
                             child: const Text('Close', style: TextStyle(color: Colors.black),))
                       ],
                     );
                   }
               );
-              } else {
-                setState(() => autoValidateMode = AutovalidateMode.always);
-            }
+              }
+            FocusManager.instance.primaryFocus?.unfocus();
           },
             backgroundColor: Color.fromRGBO(59, 221, 226, 100),
             child: const Icon(Icons.upload)
