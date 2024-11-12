@@ -145,10 +145,10 @@ class _CompleteFormState extends State<FormA> {
                     title: Row(
                       children: <Widget> [
                         const Icon(Icons.check_circle_rounded,color: Colors.green,),
+                        const SizedBox(width: 7,),
                         const Text(
                           'Submission Completed!',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(fontWeight: FontWeight.bold,),
+                          style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold,),
                         )
                       ],
                     ),
@@ -156,6 +156,14 @@ class _CompleteFormState extends State<FormA> {
                       _formKey.currentState!.value.toString(),
                       textAlign: TextAlign.left,
                     ),
+                    actions: [
+                      ElevatedButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromRGBO(145, 255, 245, 100),
+                          ),
+                          child: const Text('Close', style: TextStyle(color: Colors.black),))
+                    ],
                   );
                 });
             },
