@@ -10,9 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_form_builder: ^9.0.0-dev.1
+  flutter_form_builder: ^9.5.0
   form_builder_validators: ^11.0.0
-  flutter_typeahead: ^5.2.0
+  form_builder_extra_fields: ^11.0.0
   cupertino_icons: ^1.0.8
   intl:
 
