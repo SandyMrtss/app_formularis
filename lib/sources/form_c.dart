@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:intl/intl.dart';
 
 class FormC extends StatefulWidget {
   const FormC({super.key});
@@ -27,7 +26,7 @@ class _CompleteFormState extends State<FormC> {
             elevation: 0,
           ),
           body: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(20),
             child: SingleChildScrollView(
               child: Column(
                   children: <Widget>[
@@ -174,9 +173,9 @@ class _CompleteFormState extends State<FormC> {
                       title: Row(
                         children: <Widget> [
                           const Icon(Icons.check_circle_rounded,color: Colors.green,),
+                          const SizedBox(width: 7,),
                           const Text(
                             'Submission Completed!',
-                            textAlign: TextAlign.left,
                             style: TextStyle(fontWeight: FontWeight.bold,),
                           )
                         ],
@@ -185,13 +184,22 @@ class _CompleteFormState extends State<FormC> {
                         _formKey.currentState!.value.toString(),
                         textAlign: TextAlign.left,
                       ),
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(145, 255, 245, 100),
+                            ),
+                            child: const Text('Close', style: TextStyle(color: Colors.black),))
+                      ],
                     );
                   }
               );
               setState(() => autoValidateMode = AutovalidateMode.disabled);
-              }
+              FocusManager.instance.primaryFocus?.unfocus();
+            }
           },
-            backgroundColor: Colors.blueGrey,
+            backgroundColor: Color.fromRGBO(59, 221, 226, 100),
             child: const Icon(Icons.upload)
         ),
       );
