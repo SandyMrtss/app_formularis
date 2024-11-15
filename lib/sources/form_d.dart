@@ -15,7 +15,6 @@ class FormD extends StatefulWidget {
 
 class _CompleteFormState extends State<FormD> {
   final _formKey = GlobalKey<FormBuilderState>();
-  final TextEditingController autocompleteController = TextEditingController();
 
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
 
@@ -49,7 +48,6 @@ class _CompleteFormState extends State<FormD> {
                       FormBuilderTypeAhead<String>(
                         name: 'country',
                         initialValue: null,
-                        controller: autocompleteController,
                         decoration: const InputDecoration(
                           labelText: 'Which country are you visiting?',
                           border: OutlineInputBorder(
@@ -65,12 +63,9 @@ class _CompleteFormState extends State<FormD> {
                             title: Text(suggestion),
                           );
                         },
-                        onSelected: (country) {
-                          autocompleteController.text = country;
-                        },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: FormBuilderValidators.required(),
-                        ),
+                      ),
                       SizedBox(height: 10,),
                       FormBuilderDateTimePicker(
                         name: 'departure_date',
@@ -85,6 +80,7 @@ class _CompleteFormState extends State<FormD> {
                         initialValue: null,
                         inputType: InputType.date,
                         format: DateFormat('EEEE, MMMM dd, yyyy'),
+                        helpText: 'Pick day of departure',
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: FormBuilderValidators.required()
                       ),
@@ -93,7 +89,6 @@ class _CompleteFormState extends State<FormD> {
                         name: 'travel_date',
                         firstDate: DateTime(2020),
                         lastDate: DateTime(2030),
-                        format: DateFormat('MMM dd, yyyy'),
                         decoration: InputDecoration(
                           labelText: 'Travel dates',
                           border: OutlineInputBorder(
@@ -107,9 +102,11 @@ class _CompleteFormState extends State<FormD> {
                             },
                           ),
                         ),
+                        format: DateFormat('MMM dd, yyyy'),
+                        helpText: 'Choose travel dates',
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         validator: FormBuilderValidators.required(),
-                        ),
+                      ),
                       SizedBox(height: 10,),
                       FormBuilderDateTimePicker(
                         name: 'hour',
@@ -129,7 +126,7 @@ class _CompleteFormState extends State<FormD> {
                       ),
                       SizedBox(height: 10,),
                       FormBuilderFilterChip(
-                        name: 'favourite_sport',
+                        name: 'expenses',
                         spacing: 5,
                         runSpacing: 10,
                         alignment: WrapAlignment.spaceEvenly,
@@ -143,9 +140,8 @@ class _CompleteFormState extends State<FormD> {
                         backgroundColor: Color.fromRGBO(124, 159, 255, 75),
                         selectedColor: Colors.lightBlueAccent,
                         showCheckmark: false,
-                        shape: RoundedRectangleBorder(
+                        shape: StadiumBorder(
                           side: BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.circular(20)
                         ),
                         options: [
                           FormBuilderChipOption(

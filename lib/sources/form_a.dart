@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FormA extends StatefulWidget {
@@ -111,7 +112,7 @@ class _CompleteFormState extends State<FormA> {
                   FormBuilderDropdown<String>(
                     name: 'gender',
                     decoration: InputDecoration(
-                      hintText: 'Select Gender',
+                      labelText: 'Select Gender',
                       border: OutlineInputBorder(
                         borderSide: BorderSide(),
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -143,6 +144,11 @@ class _CompleteFormState extends State<FormA> {
                   ),
                   FormBuilderCheckboxGroup<String>(
                     name: 'music_styles',
+                    wrapSpacing: 2,
+                    wrapAlignment: WrapAlignment.spaceEvenly,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                    ),
                     options: const [
                       FormBuilderFieldOption(value: 'Pop'),
                       FormBuilderFieldOption(value: 'Rock'),
@@ -154,9 +160,6 @@ class _CompleteFormState extends State<FormA> {
                       FormBuilderFieldOption(value: 'Reggaeton'),
                       FormBuilderFieldOption(value: 'Spanish'),
                     ],
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                    ),
                   ),
                 ],
               ),

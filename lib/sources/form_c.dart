@@ -58,32 +58,31 @@ class _CompleteFormState extends State<FormC> {
                           backgroundColor:  Color.fromRGBO(124, 159, 255, 75),
                           showCheckmark: false,
                           selectedColor: Colors.lightBlueAccent,
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(Radius.circular(300))
+                          shape: StadiumBorder(
+                            side: BorderSide(color: Colors.transparent)
+                          ),
+                          options: [
+                            FormBuilderChipOption(
+                              value: 'Rugby',
+                              avatar: Icon(Icons.sports_rugby),
                             ),
-                            options: [
-                              FormBuilderChipOption(
-                                value: 'Rugby',
-                                avatar: Icon(Icons.sports_rugby),
-                              ),
-                              FormBuilderChipOption(
-                                value: 'Basketball',
-                                avatar: Icon(Icons.sports_basketball),
-                              ),
-                              FormBuilderChipOption(
-                                value: 'Tennis',
-                                avatar: Icon(Icons.sports_tennis),
-                              ),
-                              FormBuilderChipOption(
-                                value: 'Soccer',
-                                avatar: Icon(Icons.sports_soccer),
-                              ),
-                              FormBuilderChipOption(
-                                value: 'Gymnastics',
-                                avatar: Icon(Icons.sports_gymnastics),
-                              ),
-                            ],
+                            FormBuilderChipOption(
+                              value: 'Basketball',
+                              avatar: Icon(Icons.sports_basketball),
+                            ),
+                            FormBuilderChipOption(
+                              value: 'Tennis',
+                              avatar: Icon(Icons.sports_tennis),
+                            ),
+                            FormBuilderChipOption(
+                              value: 'Soccer',
+                              avatar: Icon(Icons.sports_soccer),
+                            ),
+                            FormBuilderChipOption(
+                              value: 'Gymnastics',
+                              avatar: Icon(Icons.sports_gymnastics),
+                            ),
+                          ],
                           validator: FormBuilderValidators.required(),
                         ),
                         SizedBox(height: 10,),
