@@ -136,7 +136,7 @@ class _HomePage extends StatelessWidget {
     );
   }
 
-  void _modalButtonSheet(BuildContext context) {
+  void _modalBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
@@ -248,7 +248,7 @@ class _HomePage extends StatelessWidget {
                     padding: EdgeInsets.all(3),
                     child: ElevatedButton(
                       onPressed: () {
-                        _modalButtonSheet(context);
+                        _modalBottomSheet(context);
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.all(5.0),
